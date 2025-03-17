@@ -17,3 +17,8 @@
  * - Figma : https://www.figma.com/design/aDKjwqFzzYOgslpmmFgf3w/Untitled?node-id=0-1&t=petcbihtWxGSNXbQ-1
    - Vídeo : https://youtu.be/wtykX8ZFgmg
    - Docs com as histórias: https://docs.google.com/document/d/1qxWeY8sgxpPxejGPDY0ZJitrgwIRGgKHSkECFL7OSgg/edit?usp=sharing
+
+ # Print do Jira
+
+ ![quadro](quadroJira.png)
+ ![backlog](backlog.png)
