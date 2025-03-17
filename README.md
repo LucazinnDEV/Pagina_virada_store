@@ -11,4 +11,8 @@
 * - João Guilherme Almeida	- jgbof@cesar.school
 * - José Vitor Gomes Veloso	- jvgv@cesar.school
 * - Lucas Samuel Pereira Alves	- lspa@cesar.school
-* - Rafael Lyra Costa	- rlc3@cesar.school 
+* - Rafael Lyra Costa	- rlc3@cesar.school
+
+ # Links
+ * - Figma : https://www.figma.com/design/aDKjwqFzzYOgslpmmFgf3w/Untitled?node-id=0-1&t=petcbihtWxGSNXbQ-1
+   - Vídeo : https://youtu.be/wtykX8ZFgmg
