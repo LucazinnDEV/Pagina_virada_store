@@ -22,5 +22,3 @@
 
  ![quadro](quadroJira.png)
  ![backlog](backlog.png)
-
- # teste de commit
