@@ -22,8 +22,4 @@
 
  ![quadro](quadroJira.png)
  ![backlog](backlog.png)
-
- # teste de commit
->>>>>>> 9291795db5942f1338a27b040acdd8855a667f6b
-
-
+ # outro teste
