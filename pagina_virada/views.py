@@ -13,4 +13,14 @@ class MainView (View) :
 
         return render(request, 'projeto/index.html', contexto)
     
+class PerguntaView (View) :
+    def get (self, request, pergunta_id) :
+        try :
+            pergunta = Pergunta.objects.get(pk=pergunta_id)
+        except Pergunta.DoesNotExist :
+            raise Http404("Pergunta não encontrada")
+        contexto = {'pergunta' : pergunta}
+
+        return render(request, 'projeto/delahte.html', contexto)
+    
 
