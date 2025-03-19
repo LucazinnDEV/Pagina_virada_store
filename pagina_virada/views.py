@@ -1,19 +1,19 @@
 from django.shortcuts import render
 from .models import Pergunta, Resposta
 from django.views import View
-from django.http import HttpResponse
+from django.http import HttpResponse, Http404
 from django.utils import timezone
 from django.shortcuts import redirect
 from django.urls import reverse 
 
-class MainView (View) :
+class MainView(View) :
     def get (self, request) :
         lista_ultimas_questoes = Pergunta.objects.oreder_by("-data_criacao")
         contexto = {'perguntas' : lista_ultimas_questoes}
 
         return render(request, 'pagina_virada/index.html', contexto)
     
-class PerguntaView (View) :
+class PerguntaView(View) :
     def get (self, request, pergunta_id) :
         try :
             pergunta = Pergunta.objects.get(pk=pergunta_id)
@@ -23,7 +23,7 @@ class PerguntaView (View) :
 
         return render(request, 'pagina_virada/delahte.html', contexto)
     
-class VotoView (View) :
+class VotoView(View) :
     def get (self, request, resposta_id) :
         try :
             resposta = Resposta.objects.get(pk = resposta_id)
@@ -39,7 +39,7 @@ class VotoView (View) :
             resposta.save()
             return redirect(reverse('projeto:detalhe', agrs = [resposta.pergunta.id]))
         
-class InserirPerguntaView (View) :
+class InserirPerguntaView(View) :
     def get (self, request) :
         return render (request, 'pagina_virada/inserir_pergunta.html')
     
@@ -57,4 +57,28 @@ class InserirPerguntaView (View) :
         pergunta.save()
         return redirect(reverse('projeto:detalhe', args = [pergunta.id]))
     
+class InserirRespostasView() :
+    def get (self, request, pergunta_id) :
+        try :
+            pergunta = Pergunta.objects.get(pk = pergunta_id)
+        except Pergunta.DoesNotExist :
+            raise Http404 ('Pergunta não encontrada')
+        contexto = {'pergunta': pergunta}
+    
+        return render (request, 'pagina_virada\inserir_resposta.html', contexto)
 
+    def post(self, request, pergunta_id) :
+        try :
+            pergunta = Pergunta.objects.get(pk = pergunta_id)
+        except Pergunta.DoesNotExist :
+            raise Http404 ('Pergunta não encontrada')
+    
+        if request.user.is_auhtenticated :
+            usuario = request.user.username
+        else :
+            usuario = 'anônimo'
+        texto = request.POST.get('texto')
+        data_criacao = timezone.now()
+        pergunta.resposta_set.create(texto = texto, data_criacao = data_criacao, usuario = usuario )
+
+        return redirect(reverse('pagina_virada'))
