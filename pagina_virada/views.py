@@ -23,4 +23,20 @@ class PerguntaView (View) :
 
         return render(request, 'projeto/delahte.html', contexto)
     
+class VotoView (View) :
+    def get (self, request, resposta_id) :
+        try :
+            resposta = Resposta.objects.get(pk = resposta_id)
+        except resposta.DoesNotExist :
+            raise HttpResponse(str(resposta) + "; votos: " + str(resposta.votos))
+        
+    def post (self, request, resposta_id) :
+        try :
+            resposta = Resposta.objects.get(pk = resposta_id)
+        except resposta.DoesNotExist :
+            raise Http404("Pergunta não encontrada")
+            resposta.votos += 1
+            resposta.save()
+            return redirect(reverse('projeto:detalhe', agrs = [resposta.pergunta]))
+        
 
