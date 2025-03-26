@@ -1,0 +1,12 @@
+<html>
+<head>
+    <title>Exemplo StackOverflow</title>
+</head>
+<body>
+    <span>
+        <a href="{% url 'pagina_virada:index' %}">Home</a> | <a href="{% url 'pagina_virada:inserir_pergunta' %}">Criar pergunta</a>
+    </span>
+    {% block content %}
+    {% endblock %}
+</body>
+</html>
